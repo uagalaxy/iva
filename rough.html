@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Page | iVA</title>
+    <style>
+        /* ============================================
+         --- CSS Variables (Theme Properties) ---
+         ============================================
+        */
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96.1%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 210 40% 96.1%;
+            --accent-foreground: 222.2 47.4% 11.2%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --ring: 222.2 84% 4.9%;
+            --radius: 0.5rem;
+        }
+
+        .dark {
+            --background: 222.2 84% 4.9%;
+            --foreground: 210 40% 98%;
+            --card: 222.2 84% 4.9%;
+            --card-foreground: 210 40% 98%;
+            --popover: 222.2 84% 4.9%;
+            --popover-foreground: 210 40% 98%;
+            --primary: 210 40% 98%;
+            --primary-foreground: 222.2 47.4% 11.2%;
+            --secondary: 217.2 32.6% 17.5%;
+            --secondary-foreground: 210 40% 98%;
+            --muted: 217.2 32.6% 17.5%;
+            --muted-foreground: 215 20.2% 65.1%;
+            --accent: 217.2 32.6% 17.5%;
+            --accent-foreground: 210 40% 98%;
+            --destructive: 0 62.8% 30.6%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 217.2 32.6% 17.5%;
+            --input: 217.2 32.6% 17.5%;
+            --ring: 212.7 26.8% 83.9%;
+        }
+
+        /* ============================================
+         --- Base Styles & Resets ---
+         ============================================
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ============================================
+         --- Header Styles ---
+         ============================================
+        */
+        .header {
+            background-color: hsl(var(--card));
+            color: hsl(var(--card-foreground));
+            border-bottom: 1px solid hsl(var(--border));
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: hsl(var(--primary));
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link a {
+            font-size: 1rem;
+            font-weight: 500;
+            color: hsl(var(--muted-foreground));
+            transition: color 0.2s ease-in-out;
+        }
+        
+        .nav-link a:hover,
+        .nav-link a.active {
+            color: hsl(var(--primary));
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: hsl(var(--foreground));
+            padding: 0.5rem;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .theme-toggle-btn:hover {
+            background-color: hsl(var(--accent));
+        }
+
+        .theme-toggle-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger .line {
+            width: 25px;
+            height: 3px;
+            background-color: hsl(var(--foreground));
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* ============================================
+         --- Image Carousel Styles ---
+         ============================================
+        */
+        .carousel-section {
+            width: 100%;
+            background-color: hsl(var(--card));
+        }
+        
+        .carousel-container {
+            position: relative;
+            max-width: 1600px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            max-height: 70vh;
+        }
+        
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: hsla(var(--background), 0.5);
+            color: hsl(var(--foreground));
+            border: none;
+            cursor: pointer;
+            padding: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 10;
+            border-radius: var(--radius);
+            transition: background-color 0.2s ease;
+        }
+
+        .carousel-control:hover {
+            background-color: hsla(var(--background), 0.8);
+        }
+
+        .carousel-control.prev {
+            left: 1rem;
+        }
+
+        .carousel-control.next {
+            right: 1rem;
+        }
+        
+        .carousel-dots {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: hsla(var(--foreground), 0.5);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .dot.active, .dot:hover {
+            background-color: hsl(var(--foreground));
+        }
+
+
+        /* ============================================
+         --- Responsive Design (Media Queries) ---
+         ============================================
+        */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 69px; /* Height of header */
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 69px);
+                background-color: hsl(var(--card));
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 2rem;
+                padding-top: 3rem;
+                transition: left 0.4s ease-in-out;
+                border-top: 1px solid hsl(var(--border));
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .nav-link a {
+                font-size: 1.2rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+            
+            .hamburger.active .line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active .line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .line:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            .carousel-control {
+                padding: 0.5rem;
+                font-size: 1rem;
+            }
+
+            .carousel-dots {
+                bottom: 1rem;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">iVA</a>
+            <div class="hamburger" id="hamburger">
+                <span class="line"></span><span class="line"></span><span class="line"></span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-link"><a href="#" class="active">Home</a></li>
+                    <li class="nav-link"><a href="#">Result</a></li>
+                    <li class="nav-link"><a href="#">About</a></li>
+                    <li class="nav-link"><a href="#">Contact</a></li>
+                    <li class="nav-link"><a href="#">E-Learning</a></li>
+                </ul>
+                <button class="theme-toggle-btn" id="theme-toggle"></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Image Carousel Section -->
+    <section class="carousel-section">
+        <div class="carousel-container" id="image-carousel">
+            <div class="carousel-slides" id="carousel-slides">
+                <div class="carousel-slide">
+                    <img src="https://placehold.co/1600x700/222222/ffffff?text=Modern+Architecture" alt="Model Image 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://placehold.co/1600x700/3498db/ffffff?text=Urban+Exploration" alt="Model Image 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://placehold.co/1600x700/e74c3c/ffffff?text=Abstract+Design" alt="Model Image 3">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://placehold.co/1600x700/2ecc71/ffffff?text=Nature's+Beauty" alt="Model Image 4">
+                </div>
+            </div>
+            <button class="carousel-control prev" id="prev-btn">&#10094;</button>
+            <button class="carousel-control next" id="next-btn">&#10095;</button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+        </div>
+    </section>
+
+    <!-- Dummy content to demonstrate scrolling -->
+    <main style="padding: 2rem 5%; max-width: 1000px; margin: auto; height: 150vh;">
+        <h1 style="color: hsl(var(--primary)); margin-bottom: 1rem;">Main Content Area</h1>
+        <p style="line-height: 1.6;">
+            This is the main content of the page, appearing below the image carousel. Scroll down to see the header remain sticky. The carousel above features both manual controls (arrows and dots) and an automatic slideshow functionality.
+        </p>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Mobile Menu Toggle ---
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // --- Theme Toggler ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const docElement = document.documentElement;
+            const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>`;
+            const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>`;
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            if (currentTheme === 'dark') {
+                docElement.classList.add('dark');
+                themeToggleBtn.innerHTML = sunIcon;
+            } else {
+                docElement.classList.remove('dark');
+                themeToggleBtn.innerHTML = moonIcon;
+            }
+            themeToggleBtn.addEventListener('click', () => {
+                if (docElement.classList.contains('dark')) {
+                    docElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                    themeToggleBtn.innerHTML = moonIcon;
+                } else {
+                    docElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleBtn.innerHTML = sunIcon;
+                }
+            });
+
+            // --- Image Carousel Logic ---
+            const slidesContainer = document.getElementById('carousel-slides');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const dotsContainer = document.getElementById('carousel-dots');
+            
+            let currentSlide = 0;
+            let autoSlideInterval;
+
+            if (slides.length > 0) {
+                // Create dots
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    dot.addEventListener('click', () => {
+                        goToSlide(i);
+                        resetAutoSlide();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+
+                const dots = document.querySelectorAll('.dot');
+                
+                const goToSlide = (slideIndex) => {
+                    slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    dots[slideIndex].classList.add('active');
+                    currentSlide = slideIndex;
+                };
+
+                const nextSlide = () => {
+                    const newIndex = (currentSlide + 1) % slides.length;
+                    goToSlide(newIndex);
+                };
+
+                const prevSlide = () => {
+                    const newIndex = (currentSlide - 1 + slides.length) % slides.length;
+                    goToSlide(newIndex);
+                };
+                
+                const startAutoSlide = () => {
+                    autoSlideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+                };
+
+                const resetAutoSlide = () => {
+                    clearInterval(autoSlideInterval);
+                    startAutoSlide();
+                };
+
+                // Event Listeners for manual controls
+                nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    resetAutoSlide();
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    resetAutoSlide();
+                });
+
+                // Initialize
+                goToSlide(0);
+                startAutoSlide();
+            }
+        });
+    </script>
+</body>
+</html>

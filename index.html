@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>home</title>
+  <link rel="stylesheet" href="./assest/css/global.css">
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <nav class="navbar">
+      <a href="#" class="logo">iVA</a>
+      <div class="hamburger" id="hamburger">
+        <span class="line"></span><span class="line"></span><span class="line"></span>
+      </div>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li class="nav-link"><a href="#" class="active">Home</a></li>
+          <li class="nav-link"><a href="#">Result</a></li>
+          <li class="nav-link"><a href="#">About</a></li>
+          <li class="nav-link"><a href="#">Contact</a></li>
+          <li class="nav-link"><a href="#">E-Learning</a></li>
+        </ul>
+        <button class="theme-toggle-btn" id="theme-toggle"></button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Image Carousel Section -->
+  <section class="carousel-section">
+    <div class="carousel-container" id="image-carousel">
+      <div class="carousel-slides" id="carousel-slides">
+        <div class="carousel-slide">
+          <img src="https://placehold.co/1600x700/222222/ffffff?text=Modern+Architecture" alt="Model Image 1">
+        </div>
+        <div class="carousel-slide">
+          <img src="https://placehold.co/1600x700/3498db/ffffff?text=Urban+Exploration" alt="Model Image 2">
+        </div>
+        <div class="carousel-slide">
+          <img src="https://placehold.co/1600x700/e74c3c/ffffff?text=Abstract+Design" alt="Model Image 3">
+        </div>
+        <div class="carousel-slide">
+          <img src="https://placehold.co/1600x700/2ecc71/ffffff?text=Nature's+Beauty" alt="Model Image 4">
+        </div>
+      </div>
+      <button class="carousel-control prev" id="prev-btn">&#10094;</button>
+      <button class="carousel-control next" id="next-btn">&#10095;</button>
+      <div class="carousel-dots" id="carousel-dots"></div>
+    </div>
+  </section>
+
+  <!-- Dummy content to demonstrate scrolling -->
+  <main style="padding: 2rem 5%; max-width: 1000px; margin: auto; height: 150vh;">
+    <h1 style="color: hsl(var(--primary)); margin-bottom: 1rem;">Main Content Area</h1>
+    <p style="line-height: 1.6;">
+      This is the main content of the page, appearing below the image carousel. Scroll down to see the header remain
+      sticky. The carousel above features both manual controls (arrows and dots) and an automatic slideshow
+      functionality.
+    </p>
+  </main>
+  <!----js---------------------------->
+  <script src="./assest/js/global.js"></script>
+</body>
+
+</html>
