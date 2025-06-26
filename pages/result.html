@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Page | iVA</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <style>
+        /* ============================================
+           --- Main Content Styles ---
+           ============================================
+        */
+        /* Result Section Specific Styles */
+        .result-year-section {
+            background-color: var(--background);
+            /* Use background for main section */
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .result-year-section h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .monthly-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .monthly-result-card {
+            background-color: var(--card);
+            /* Cards inside the year section */
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .monthly-result-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .monthly-result-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+        }
+
+        .monthly-result-card .btn {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">iVA</a>
+            <div class="res-theme">
+                <button class="theme-toggle-btn" id="theme-toggler"></button>
+                <div class="hamburger" id="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-link"><a href="../index.html">Home</a></li>
+                    <li class="nav-link"><a href="#">Result</a></li>
+                    <li class="nav-link"><a href="./about.html">About</a></li>
+                    <li class="nav-link"><a href="./course.html">Courses</a></li>
+                    <li class="nav-link"><a href="./e-learning.html">E-learning</a></li>
+                    <li class="nav-link"><a href="./contact.html">Contact</a></li>
+                </ul>
+                <button class="theme-toggle-btn" id="theme-toggle"></button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="carousel-section">
+        <div class="carousel-container" id="image-carousel">
+            <div class="carousel-slides" id="carousel-slides">
+                <div class="carousel-slide">
+                    <img src="../images/carousel (1).jpg" alt="Carousel Image 1"
+                        onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../images/carousel (2).jpg" alt="Carousel Image 1"
+                        onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../images/carousel (1).png" alt="Carousel Image 1"
+                        onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../images/1668886318551-scaled.jpg" alt="Carousel Image 1"
+                        onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
+                </div>
+            </div>
+            <button class="carousel-control prev" id="prev-btn">&#10094;</button>
+            <button class="carousel-control next" id="next-btn">&#10095;</button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+        </div>
+    </section>
+    <!-- Main Content for Result Page -->
+    <main class="main-content">
+        <h2 class="section-title">Our Student Results</h2>
+
+        <!-- 10th Class Results Section -->
+        <section id="10th-results" class="section result-year-section">
+            <h3>10th Class Results</h3>
+            <div class="monthly-results">
+                <div class="monthly-result-card">
+                    <h4>January Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>February Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>March Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>April Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>May Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>June Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>July Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>August Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>September Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>October Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>November Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>December Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11th Class Results Section -->
+        <section id="11th-results" class="section result-year-section">
+            <h3>11th Class Results</h3>
+            <div class="monthly-results">
+                <div class="monthly-result-card">
+                    <h4>January Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>February Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>March Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>April Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>May Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>June Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>July Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>August Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>September Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>October Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>November Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>December Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12th Class Results Section -->
+        <section id="12th-results" class="section result-year-section">
+            <h3>12th Class Results</h3>
+            <div class="monthly-results">
+                <div class="monthly-result-card">
+                    <h4>January Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>February Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>March Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>April Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>May Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>June Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>July Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>August Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>September Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>October Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>November Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+                <div class="monthly-result-card">
+                    <h4>December Monthly Test</h4>
+                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="index.html" class="footer-logo">iVA</a>
+            <ul class="footer-links">
+                <li class="footer-link"><a href="../index.html">Home</a></li>
+                <li class="footer-link"><a href="#">Result</a></li>
+                <li class="footer-link"><a href="about.html">About</a></li>
+                <li class="footer-link"><a href="course.html">Courses</a></li>
+                <li class="footer-link"><a href="e-learning.html">E-learning</a></li>
+                <li class="footer-link"><a href="contact.html">Contact</a></li>
+                <li class="footer-link"><a href="#">Privacy Policy</a></li>
+                <li class="footer-link"><a href="#">Terms of Service</a></li>
+            </ul>
+            <div class="footer-social-links">
+                <a href="#" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect width="4" height="12" x="2" y="9"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.44-.78-3.46 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.55 1.02-.9 2.21-.78 3.46 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                        </path>
+                        <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Dribbble">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path
+                            d="M19.14 8.76c.72 1.25 1.12 2.65 1.12 4.14 0 4.76-3.85 8.61-8.61 8.61-4.76 0-8.61-3.85-8.61-8.61 0-1.49.4-2.89 1.12-4.14M5.13 15.11a7 7 0 0 1-1.3-3.66c0-.98.17-1.92.48-2.81">
+                        </path>
+                        <path d="M14 6.44C16.27 7.74 18 9.9 18 12.3c0 .87-.19 1.7-.56 2.47"></path>
+                        <path d="M11 11.66c-.7-.47-1.4-.77-2.07-.94"></path>
+                        <path
+                            d="M15.42 17.5c-1.25.72-2.65 1.12-4.14 1.12-4.76 0-8.61-3.85-8.61-8.61 0-.98.17-1.92.48-2.81">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copyright">&copy; 2023 iVA. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="../assets/js/global.js"></script>
+</body>
+
+</html>

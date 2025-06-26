@@ -1,68 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>home</title>
-  <link rel="stylesheet" href="./assest/css/global.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Page | iVA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="./assets/css/global.css">
 </head>
-
 <body>
-  <!-- Header Section -->
-  <header class="header">
-    <nav class="navbar">
-      <a href="#" class="logo">iVA</a>
-      <div class="hamburger" id="hamburger">
-        <span class="line"></span><span class="line"></span><span class="line"></span>
-      </div>
-      <div class="nav-menu" id="nav-menu">
-        <ul class="nav-links">
-          <li class="nav-link"><a href="#" class="active">Home</a></li>
-          <li class="nav-link"><a href="#">Result</a></li>
-          <li class="nav-link"><a href="#">About</a></li>
-          <li class="nav-link"><a href="#">Contact</a></li>
-          <li class="nav-link"><a href="#">E-Learning</a></li>
-        </ul>
-        <button class="theme-toggle-btn" id="theme-toggle"></button>
-      </div>
-    </nav>
-  </header>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({easing: 'ease-in-out-sine'});
+      });
+    </script>
+    <!-- Header Section -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">iVA</a>
+            <div class="res-theme">
+                <button class="theme-toggle-btn" id="theme-toggler"></button>
+            <div class="hamburger" id="hamburger">
+                <span class="line"></span><span class="line"></span><span class="line"></span>
+            </div>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-link"><a href="#">Home</a></li>
+                    <li class="nav-link"><a href="./pages/result.html">Result</a></li>
+                    <li class="nav-link"><a href="./pages/about.html">About</a></li>
+                    <li class="nav-link"><a href="./pages/course.html">Courses</a></li>
+                    <li class="nav-link"><a href="./pages/e-learning.html">E-learning</a></li>
+                    <li class="nav-link"><a href="./pages/contact.html">Contact</a></li>
+                </ul>
+                <button class="theme-toggle-btn" id="theme-toggle"></button>
+            </div>
+        </nav>
+    </header>
 
-  <!-- Image Carousel Section -->
-  <section class="carousel-section">
-    <div class="carousel-container" id="image-carousel">
-      <div class="carousel-slides" id="carousel-slides">
-        <div class="carousel-slide">
-          <img src="https://placehold.co/1600x700/222222/ffffff?text=Modern+Architecture" alt="Model Image 1">
+    <!-- Image Carousel Section -->
+    <section class="carousel-section">
+        <div class="carousel-container" id="image-carousel">
+            <div class="carousel-slides" id="carousel-slides">
+                <div class="carousel-slide">
+                    <img src="./assets/images/carousel (1).jpg" alt="Carousel Image 1" onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/images/carousel (2).jpg" alt="Carousel Image 1" onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/images/carousel (1).png" alt="Carousel Image 1" onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/images/1668886318551-scaled.jpg" alt="Carousel Image 1" onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
+                </div>
+            </div>
+            <button class="carousel-control prev" id="prev-btn">&#10094;</button>
+            <button class="carousel-control next" id="next-btn">&#10095;</button>
+            <div class="carousel-dots" id="carousel-dots"></div>
         </div>
-        <div class="carousel-slide">
-          <img src="https://placehold.co/1600x700/3498db/ffffff?text=Urban+Exploration" alt="Model Image 2">
-        </div>
-        <div class="carousel-slide">
-          <img src="https://placehold.co/1600x700/e74c3c/ffffff?text=Abstract+Design" alt="Model Image 3">
-        </div>
-        <div class="carousel-slide">
-          <img src="https://placehold.co/1600x700/2ecc71/ffffff?text=Nature's+Beauty" alt="Model Image 4">
-        </div>
-      </div>
-      <button class="carousel-control prev" id="prev-btn">&#10094;</button>
-      <button class="carousel-control next" id="next-btn">&#10095;</button>
-      <div class="carousel-dots" id="carousel-dots"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Dummy content to demonstrate scrolling -->
-  <main style="padding: 2rem 5%; max-width: 1000px; margin: auto; height: 150vh;">
-    <h1 style="color: hsl(var(--primary)); margin-bottom: 1rem;">Main Content Area</h1>
-    <p style="line-height: 1.6;">
-      This is the main content of the page, appearing below the image carousel. Scroll down to see the header remain
-      sticky. The carousel above features both manual controls (arrows and dots) and an automatic slideshow
-      functionality.
-    </p>
-  </main>
-  <!----js---------------------------->
-  <script src="./assest/js/global.js"></script>
+    <!-- Main Content With New Sections -->
+    <main class="main-content">
+        <!-- About Us Section -->
+        <section id="about-us" class="section">
+            <h2 class="section-title" data-aos="zoom-out">About Us</h2>
+            <div class="grid-layout">
+                <div >
+                    <img data-aos="slide-up" src="./assets/images/bg.png" alt="About Us Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+                </div>
+                <div data-aos="fade-left">
+                    <h1>Hey Guys!</h1>
+                    <p>
+                       We aspire to make our students excel in terms of thought, ideology and performance. To achieve this, I and my faculty work with commitment and dedication. With such an endeavor, we are sure of achieving the pinnacle for success.
+                      <br> I, on behalf of entire IVA classes team welcome you to join us and feel the blend of quality & Innovation that can change you to be the world class professional. 
+                    </p>
+                    <a href="./pages/about.html" class="btn">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awesome Features Section -->
+        <section id="features" class="section">
+            <h2 class="section-title" data-aos="zoom-out">Our Awesome Features</h2>
+            <div class="grid-layout">
+                <div class="card" data-aos="flip-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    <h3>Expert-Led Courses</h3>
+                    <p>Learn from industry leaders and certified professionals with real-world experience.</p>
+                </div>
+                <div class="card" data-aos="slide-up">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+                    <h3>Flexible Learning</h3>
+                    <p>Access your courses anytime, anywhere, on any device. Learn at your own pace.</p>
+                </div>
+                <div class="card" data-aos="fade-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.2 3-6.4 18M3.8 7.4h16.4M12 20.6V3.4"></path></svg>
+                    <h3>Career Support</h3>
+                    <p>Get certified upon completion and receive support to help you advance your career.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Courses Section -->
+        <section id="courses" class="section">
+            <h2 class="section-title" data-aos="zoom-out">Explore Our Courses</h2>
+            <div class="grid-layout">
+                <div data-aos="fade-up" class="card">
+                    <img src="./assets/images/bb.png" alt="bihar board logo" onerror="this.onerror=null;this.src='https://placehold.co/600x338/cccccc/ffffff?text=Image+Not+Found';">
+                    <h3>BIHAR board</h3>
+                    <p>The Bihar School Examination Board (abbreviated BSEB) is a statutory body under section 3 of Bihar School Examination Act - 1952 which is functioning under Government of Bihar devised to conduct examinations at secondary and senior secondary standard in both government</p>
+                    
+                </div>
+                <div data-aos="fade-right" class="card">
+                    <img src="./assets/images/cbse.png" alt="cbse board logo" onerror="this.onerror=null;this.src='https://placehold.co/600x338/cccccc/ffffff?text=Image+Not+Found';">
+                    <h3>CBSE board</h3>
+                    <p>The Central Board of Secondary Education is a national level board of education in India for public and private schools, controlled and managed by Union Government of India.<br>CBSE has asked all schools affiliated to follow only NCERT curriculum.</p>
+                    
+                </div>
+            </div>
+        </section>    
+        <!-- Our Experts Section -->
+        <section id="experts" class="section">
+            <h2 class="section-title">Meet Our Experts</h2>
+            <div class="grid-layout">
+                <div class="card">
+                    <img src="./assets/images/admin.jpg" alt="vipul bhargav" onerror="this.onerror=null;this.src='https://placehold.co/150x150/cccccc/ffffff?text=Expert';">
+                    <h3>Vipul Bhargaw</h3>
+                    <p>Faculty of chemistry</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="./assets/images/1668886318547-scaled.jpg" alt="Expert 2" onerror="this.onerror=null;this.src='https://placehold.co/150x150/cccccc/ffffff?text=Expert';">
+                    <h3>Imtiyaz Ali</h3>
+                    <p>Faculty of Mathematics</p>
+                     <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="./assets/images/1668886318551-scaled.jpg" alt="Expert 3" onerror="this.onerror=null;this.src='https://placehold.co/150x150/cccccc/ffffff?text=Expert';">
+                    <h3>Paankaj Kumar</h3>
+                    <p>Faculty of Biology</p>
+                     <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- Testimonials Section -->
+        <section id="testimonials" class="section">
+            <h2 class="section-title" data-aos="zoom-out">What Our Students Say</h2>
+            <div class="grid-layout">
+                <div class="card">
+                    <p>"The Web Development course was a game-changer for my career. The instructors were amazing and the hands-on projects were invaluable."</p>
+                    <div class="user-profile">
+                        <img src="https://i.pravatar.cc/100?u=Jessica" alt="User 1" onerror="this.onerror=null;this.src='https://placehold.co/100x100/cccccc/ffffff?text=User';">
+                        <div>
+                           <h4>Jessica Miller</h4>
+                           <p>Web Developer</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="card">
+                    <p>"I was a complete beginner, but the Data Science course structure made complex topics easy to understand. Highly recommended!"</p>
+                    <div class="user-profile">
+                        <img src="https://i.pravatar.cc/100?u=David" alt="User 2" onerror="this.onerror=null;this.src='https://placehold.co/100x100/cccccc/ffffff?text=User';">
+                        <div>
+                           <h4>David Chen</h4>
+                           <p>Data Analyst</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="card">
+                    <p>"The flexibility of the platform allowed me to learn UX/UI design while working full-time. Best investment I've made in myself."</p>
+                    <div class="user-profile">
+                        <img src="https://i.pravatar.cc/100?u=Sarah" alt="User 3" onerror="this.onerror=null;this.src='https://placehold.co/100x100/cccccc/ffffff?text=User';">
+                        <div>
+                           <h4>Sarah Thompson</h4>
+                           <p>UX Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section (Placeholder) -->
+        <section id="contact-section" class="section">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="card" style="padding: 3rem; text-align: center;">
+                <p>Have questions? Reach out to us! Contact information and a form will be here soon.</p>
+            </div>
+        </section>
+
+        <!-- E-learning Section (Placeholder) -->
+        <section id="e-learning-section" class="section">
+            <h2 class="section-title">Discover E-learning</h2>
+            <div class="card" style="padding: 3rem; text-align: center;">
+                <p>Explore our extensive e-learning resources and what makes our platform unique.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#" class="footer-logo">iVA</a>
+            <ul class="footer-links">
+                <li class="footer-link"><a href="#result-section">Result</a></li>
+                <li class="footer-link"><a href="#about-us">About</a></li>
+                <li class="footer-link"><a href="#courses">Courses</a></li>
+                <li class="footer-link"><a href="#e-learning-section">E-learning</a></li>
+                <li class="footer-link"><a href="#contact-section">Contact</a></li>
+                <li class="footer-link"><a href="#">Privacy Policy</a></li>
+                <li class="footer-link"><a href="#">Terms of Service</a></li>
+            </ul>
+            <div class="footer-social-links">
+                <a href="#" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.44-.78-3.46 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.55 1.02-.9 2.21-.78 3.46 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                </a>
+                <a href="#" aria-label="Dribbble">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M19.14 8.76c.72 1.25 1.12 2.65 1.12 4.14 0 4.76-3.85 8.61-8.61 8.61-4.76 0-8.61-3.85-8.61-8.61 0-1.49.4-2.89 1.12-4.14M5.13 15.11a7 7 0 0 1-1.3-3.66c0-.98.17-1.92.48-2.81"></path><path d="M14 6.44C16.27 7.74 18 9.9 18 12.3c0 .87-.19 1.7-.56 2.47"></path><path d="M11 11.66c-.7-.47-1.4-.77-2.07-.94"></path><path d="M15.42 17.5c-1.25.72-2.65 1.12-4.14 1.12-4.76 0-8.61-3.85-8.61-8.61 0-.98.17-1.92.48-2.81"></path></svg>
+                </a>
+            </div>
+            <p class="footer-copyright">&copy; 2023 iVA. All rights reserved.</p>
+        </div>
+        <p>coded with&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><path d="M256,448a32,32,0,0,1-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63,114.52,98.46,64,159.08,64c44.08,0,74.61,24.83,92.39,45.51a6,6,0,0,0,9.06,0C278.31,88.81,308.84,64,352.92,64,413.54,64,463.37,114.52,464,176.64c.54,54.21-18.63,104.26-58.61,153-18.77,22.87-52.8,59.45-131.39,112.8A32,32,0,0,1,256,448Z" style="fill: red;"></path></svg>&nbsp;by&nbsp;<a class="herftome" href="https://uagalaxy.web.app">uagalaxy</a></p>
+    </footer>
+<!----------------->
+<script src="./assets/js/global.js"></script>
 </body>
-
 </html>
