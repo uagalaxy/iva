@@ -4,479 +4,406 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Page | iVA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="./assets/css/global.css">
     <style>
-        /* ============================================
-         --- CSS Variables (Theme Properties) ---
-         ============================================
-        */
-        :root {
-            --background: 0 0% 100%;
-            --foreground: 222.2 84% 4.9%;
-            --card: 0 0% 100%;
-            --card-foreground: 222.2 84% 4.9%;
-            --popover: 0 0% 100%;
-            --popover-foreground: 222.2 84% 4.9%;
-            --primary: 222.2 47.4% 11.2%;
-            --primary-foreground: 210 40% 98%;
-            --secondary: 210 40% 96.1%;
-            --secondary-foreground: 222.2 47.4% 11.2%;
-            --muted: 210 40% 96.1%;
-            --muted-foreground: 215.4 16.3% 46.9%;
-            --accent: 210 40% 96.1%;
-            --accent-foreground: 222.2 47.4% 11.2%;
-            --destructive: 0 84.2% 60.2%;
-            --destructive-foreground: 210 40% 98%;
-            --border: 214.3 31.8% 91.4%;
-            --input: 214.3 31.8% 91.4%;
-            --ring: 222.2 84% 4.9%;
-            --radius: 0.5rem;
-        }
-
-        .dark {
-            --background: 222.2 84% 4.9%;
-            --foreground: 210 40% 98%;
-            --card: 222.2 84% 4.9%;
-            --card-foreground: 210 40% 98%;
-            --popover: 222.2 84% 4.9%;
-            --popover-foreground: 210 40% 98%;
-            --primary: 210 40% 98%;
-            --primary-foreground: 222.2 47.4% 11.2%;
-            --secondary: 217.2 32.6% 17.5%;
-            --secondary-foreground: 210 40% 98%;
-            --muted: 217.2 32.6% 17.5%;
-            --muted-foreground: 215 20.2% 65.1%;
-            --accent: 217.2 32.6% 17.5%;
-            --accent-foreground: 210 40% 98%;
-            --destructive: 0 62.8% 30.6%;
-            --destructive-foreground: 210 40% 98%;
-            --border: 217.2 32.6% 17.5%;
-            --input: 217.2 32.6% 17.5%;
-            --ring: 212.7 26.8% 83.9%;
-        }
-
-        /* ============================================
-         --- Base Styles & Resets ---
-         ============================================
-        */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: hsl(var(--background));
-            color: hsl(var(--foreground));
-            transition: background-color 0.3s ease, color 0.3s ease;
-            min-height: 100vh;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* ============================================
-         --- Header Styles ---
-         ============================================
-        */
-        .header {
-            background-color: hsl(var(--card));
-            color: hsl(var(--card-foreground));
-            border-bottom: 1px solid hsl(var(--border));
-            padding: 1rem 5%;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            transition: background-color 0.3s ease;
-        }
-
-        .navbar {
+               .main-content {
+            flex-grow: 1;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 2rem;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: hsl(var(--primary));
-            transition: color 0.3s ease;
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .nav-link a {
-            font-size: 1rem;
-            font-weight: 500;
-            color: hsl(var(--muted-foreground));
-            transition: color 0.2s ease-in-out;
-        }
-        
-        .nav-link a:hover,
-        .nav-link a.active {
-            color: hsl(var(--primary));
-        }
-
-        .theme-toggle-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: hsl(var(--foreground));
-            padding: 0.5rem;
+        .login-container {
+            background-color: var(--card);
+            border: 1px solid var(--border);
             border-radius: var(--radius);
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem; /* Gap for items inside login container */
+        }
+
+        .login-container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem; /* Reduced margin */
+        }
+
+        .google-signin-btn {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-        }
-        
-        .theme-toggle-btn:hover {
-            background-color: hsl(var(--accent));
+            gap: 0.75rem;
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            width: 100%;
+            max-width: 300px; /* Max width for the button */
+            margin-top: 1rem; /* Spacing from title */
         }
 
-        .theme-toggle-btn svg {
+        .google-signin-btn:hover {
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .google-signin-btn svg {
             width: 24px;
             height: 24px;
         }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
 
-        .hamburger .line {
-            width: 25px;
-            height: 3px;
-            background-color: hsl(var(--foreground));
-            border-radius: 5px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* ============================================
-         --- Image Carousel Styles ---
-         ============================================
-        */
-        .carousel-section {
-            width: 100%;
-            background-color: hsl(var(--card));
-        }
-        
-        .carousel-container {
-            position: relative;
-            max-width: 1600px;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        .carousel-slides {
+        .user-profile-section {
             display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            box-sizing: border-box;
-        }
-
-        .carousel-slide img {
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--foreground);
+            text-align: center;
             width: 100%;
-            display: block;
-            object-fit: cover;
-            max-height: 70vh;
         }
-        
-        .carousel-control {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: hsla(var(--background), 0.5);
-            color: hsl(var(--foreground));
+
+        .user-profile-section img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .user-profile-section p {
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+        .user-profile-section p:first-of-type {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .user-profile-section strong {
+            color: var(--primary);
+        }
+
+        .signout-btn {
+            background-color: var(--destructive);
+            color: var(--destructive-foreground);
+            padding: 0.7rem 1.4rem;
+            border-radius: var(--radius);
             border: none;
             cursor: pointer;
-            padding: 1rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            z-index: 10;
+            font-size: 1rem;
+            margin-top: 1.5rem;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+        }
+
+        .signout-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* --- Modal for Messages --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--card);
+            margin: auto;
+            padding: 20px;
+            border: 1px solid var(--border);
             border-radius: var(--radius);
-            transition: background-color 0.2s ease;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
         }
 
-        .carousel-control:hover {
-            background-color: hsla(var(--background), 0.8);
-        }
-
-        .carousel-control.prev {
-            left: 1rem;
-        }
-
-        .carousel-control.next {
-            right: 1rem;
-        }
-        
-        .carousel-dots {
+        .close-button {
+            color: var(--muted-foreground);
             position: absolute;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: hsla(var(--foreground), 0.5);
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.2s ease;
         }
-
-        .dot.active, .dot:hover {
-            background-color: hsl(var(--foreground));
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--primary);
+            text-decoration: none;
+            cursor: pointer;
         }
-
-
-        /* ============================================
-         --- Responsive Design (Media Queries) ---
-         ============================================
-        */
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 69px; /* Height of header */
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 69px);
-                background-color: hsl(var(--card));
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                gap: 2rem;
-                padding-top: 3rem;
-                transition: left 0.4s ease-in-out;
-                border-top: 1px solid hsl(var(--border));
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 2rem;
-            }
-            
-            .nav-link a {
-                font-size: 1.2rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-            
-            .hamburger.active .line:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-            
-            .hamburger.active .line:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active .line:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-            
-            .carousel-control {
-                padding: 0.5rem;
-                font-size: 1rem;
-            }
-
-            .carousel-dots {
-                bottom: 1rem;
-            }
-
-            .dot {
-                width: 10px;
-                height: 10px;
+                @media (max-width: 768px) {
+            .login-container {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({easing: 'ease-in-out-sine'});
+      });
+    </script>
     <!-- Header Section -->
     <header class="header">
         <nav class="navbar">
             <a href="#" class="logo">iVA</a>
+            <div class="res-theme">
+                <button class="theme-toggle-btn" id="theme-toggler"></button>
             <div class="hamburger" id="hamburger">
                 <span class="line"></span><span class="line"></span><span class="line"></span>
             </div>
+            </div>
             <div class="nav-menu" id="nav-menu">
                 <ul class="nav-links">
-                    <li class="nav-link"><a href="#" class="active">Home</a></li>
-                    <li class="nav-link"><a href="#">Result</a></li>
-                    <li class="nav-link"><a href="#">About</a></li>
-                    <li class="nav-link"><a href="#">Contact</a></li>
-                    <li class="nav-link"><a href="#">E-Learning</a></li>
+                    <li class="nav-link"><a href="#">Home</a></li>
+                    <li class="nav-link"><a href="./pages/result.html">Result</a></li>
+                    <li class="nav-link"><a href="./pages/about.html">About</a></li>
+                    <li class="nav-link"><a href="./pages/course.html">Courses</a></li>
+                    <li class="nav-link"><a href="./pages/e-learning.html">E-learning</a></li>
+                    <li class="nav-link"><a href="./pages/contact.html">Contact</a></li>
                 </ul>
                 <button class="theme-toggle-btn" id="theme-toggle"></button>
             </div>
         </nav>
     </header>
+  <main class="main-content">
+        <div class="login-container" id="login-container">
+            <h2 id="form-title">Sign In to iVA</h2>
+            
+            <!-- Google Sign-In Button -->
+            <button id="google-signin-btn" class="google-signin-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+                Sign in with Google
+            </button>
 
-    <!-- Image Carousel Section -->
-    <section class="carousel-section">
-        <div class="carousel-container" id="image-carousel">
-            <div class="carousel-slides" id="carousel-slides">
-                <div class="carousel-slide">
-                    <img src="https://placehold.co/1600x700/222222/ffffff?text=Modern+Architecture" alt="Model Image 1">
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://placehold.co/1600x700/3498db/ffffff?text=Urban+Exploration" alt="Model Image 2">
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://placehold.co/1600x700/e74c3c/ffffff?text=Abstract+Design" alt="Model Image 3">
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://placehold.co/1600x700/2ecc71/ffffff?text=Nature's+Beauty" alt="Model Image 4">
-                </div>
+            <!-- User Profile Display Section (shown when logged in) -->
+            <div id="user-profile-section" class="user-profile-section" style="display: none;">
+                <img id="user-pfp" src="https://i.pravatar.cc/100?u=placeholder" alt="Profile Picture" onerror="this.onerror=null;this.src='https://placehold.co/100x100/cccccc/ffffff?text=User';">
+                <p>Welcome, <strong id="user-name-display"></strong>!</p>
+                <p>Email: <strong id="user-email-display"></strong></p>
+                <p>Edit page:</p>
+                <a href="./pages/result.html" class="btn">Result</a>
+                <button id="signout-btn" class="signout-btn">Sign Out</button>
             </div>
-            <button class="carousel-control prev" id="prev-btn">&#10094;</button>
-            <button class="carousel-control next" id="next-btn">&#10095;</button>
-            <div class="carousel-dots" id="carousel-dots"></div>
         </div>
-    </section>
-
-    <!-- Dummy content to demonstrate scrolling -->
-    <main style="padding: 2rem 5%; max-width: 1000px; margin: auto; height: 150vh;">
-        <h1 style="color: hsl(var(--primary)); margin-bottom: 1rem;">Main Content Area</h1>
-        <p style="line-height: 1.6;">
-            This is the main content of the page, appearing below the image carousel. Scroll down to see the header remain sticky. The carousel above features both manual controls (arrows and dots) and an automatic slideshow functionality.
-        </p>
     </main>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#" class="footer-logo">iVA</a>
+            <ul class="footer-links">
+                <li class="footer-link"><a href="#result-section">Result</a></li>
+                <li class="footer-link"><a href="#about-us">About</a></li>
+                <li class="footer-link"><a href="#courses">Courses</a></li>
+                <li class="footer-link"><a href="#e-learning-section">E-learning</a></li>
+                <li class="footer-link"><a href="#contact-section">Contact</a></li>
+                <li class="footer-link"><a href="#">Privacy Policy</a></li>
+                <li class="footer-link"><a href="#">Terms of Service</a></li>
+            </ul>
+            <div class="footer-social-links">
+                <a href="#" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.44-.78-3.46 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.55 1.02-.9 2.21-.78 3.46 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                </a>
+                <a href="#" aria-label="Dribbble">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M19.14 8.76c.72 1.25 1.12 2.65 1.12 4.14 0 4.76-3.85 8.61-8.61 8.61-4.76 0-8.61-3.85-8.61-8.61 0-1.49.4-2.89 1.12-4.14M5.13 15.11a7 7 0 0 1-1.3-3.66c0-.98.17-1.92.48-2.81"></path><path d="M14 6.44C16.27 7.74 18 9.9 18 12.3c0 .87-.19 1.7-.56 2.47"></path><path d="M11 11.66c-.7-.47-1.4-.77-2.07-.94"></path><path d="M15.42 17.5c-1.25.72-2.65 1.12-4.14 1.12-4.76 0-8.61-3.85-8.61-8.61 0-.98.17-1.92.48-2.81"></path></svg>
+                </a>
+            </div>
+            <p class="footer-copyright">&copy; 2023 iVA. All rights reserved.</p>
+        </div>
+        <p>coded with&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><path d="M256,448a32,32,0,0,1-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63,114.52,98.46,64,159.08,64c44.08,0,74.61,24.83,92.39,45.51a6,6,0,0,0,9.06,0C278.31,88.81,308.84,64,352.92,64,413.54,64,463.37,114.52,464,176.64c.54,54.21-18.63,104.26-58.61,153-18.77,22.87-52.8,59.45-131.39,112.8A32,32,0,0,1,256,448Z" style="fill: red;"></path></svg>&nbsp;by&nbsp;<a class="herftome" href="https://uagalaxy.web.app">uagalaxy</a></p>
+    </footer>
+<!----------------->
+<!-- Modal for Messages -->
+    <div id="message-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            GoogleAuthProvider, // Import GoogleAuthProvider
+            signInWithPopup,    // Import signInWithPopup
+            onAuthStateChanged,
+            signOut 
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // --- Mobile Menu Toggle ---
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('nav-menu');
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-            
-            // --- Theme Toggler ---
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const docElement = document.documentElement;
-            const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>`;
-            const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>`;
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            if (currentTheme === 'dark') {
-                docElement.classList.add('dark');
-                themeToggleBtn.innerHTML = sunIcon;
-            } else {
-                docElement.classList.remove('dark');
-                themeToggleBtn.innerHTML = moonIcon;
-            }
-            themeToggleBtn.addEventListener('click', () => {
-                if (docElement.classList.contains('dark')) {
-                    docElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                    themeToggleBtn.innerHTML = moonIcon;
-                } else {
-                    docElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                    themeToggleBtn.innerHTML = sunIcon;
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDIBNqym8qR0UtnRB1XzuQLH0RdNFOK3Mo",
+            authDomain: "ua-iva.firebaseapp.com",
+            projectId: "ua-iva",
+            storageBucket: "ua-iva.firebasestorage.app",
+            messagingSenderId: "112007376465",
+            appId: "1:112007376465:web:568326ad5ccdd029875270",
+            measurementId: "G-HQPW8CG86E"
+        };
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider(); // Initialize Google Auth Provider
+
+        // Get DOM elements
+        const formTitle = document.getElementById('form-title');
+        const googleSignInBtn = document.getElementById('google-signin-btn'); // New ID for Google button
+        const signOutBtn = document.getElementById('signout-btn');
+        const userProfileSection = document.getElementById('user-profile-section');
+        const userNameDisplay = document.getElementById('user-name-display');
+        const userEmailDisplay = document.getElementById('user-email-display');
+        const userPfp = document.getElementById('user-pfp');
+        const messageModal = document.getElementById('message-modal');
+        const modalMessage = document.getElementById('modal-message');
+        const closeModalBtn = document.querySelector('.modal .close-button');
+
+        // Function to show modal message
+        function showMessage(message) {
+            modalMessage.textContent = message;
+            modalMessage.style.textAlign = 'center';
+            messageModal.style.display = 'flex';
+        }
+
+        // Function to hide modal message
+        function hideMessage() {
+            messageModal.style.display = 'none';
+        }
+
+        // Event listener for closing modal
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', hideMessage);
+            window.addEventListener('click', (event) => {
+                if (event.target === messageModal) {
+                    hideMessage();
                 }
             });
+        }
 
-            // --- Image Carousel Logic ---
-            const slidesContainer = document.getElementById('carousel-slides');
-            const slides = document.querySelectorAll('.carousel-slide');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const dotsContainer = document.getElementById('carousel-dots');
-            
-            let currentSlide = 0;
-            let autoSlideInterval;
+        // Handle Google Sign-In
+        if (googleSignInBtn) {
+            googleSignInBtn.addEventListener('click', async () => {
+                try {
+                    const result = await signInWithPopup(auth, googleProvider);
+                    const user = result.user;
 
-            if (slides.length > 0) {
-                // Create dots
-                slides.forEach((_, i) => {
-                    const dot = document.createElement('div');
-                    dot.classList.add('dot');
-                    dot.addEventListener('click', () => {
-                        goToSlide(i);
-                        resetAutoSlide();
-                    });
-                    dotsContainer.appendChild(dot);
-                });
+                    // Store/update user's profile data in Firestore (name, email, photoURL)
+                    const userProfileRef = doc(db, `artifacts/${appId}/users/${user.uid}/userProfiles`, user.uid);
+                    await setDoc(userProfileRef, {
+                        name: user.displayName,
+                        email: user.email,
+                        photoURL: user.photoURL
+                    }, { merge: true }); // Use merge to update existing fields without overwriting others
 
-                const dots = document.querySelectorAll('.dot');
+                    showMessage(`Successfully signed in as ${user.displayName || user.email}`);
+                } catch (error) {
+                    console.error('Google Sign-in error:', error);
+                    showMessage(`Google Sign-in failed: ${error.message}`);
+                }
+            });
+        }
+
+        // Handle Sign Out
+        if (signOutBtn) {
+            signOutBtn.addEventListener('click', async () => {
+                try {
+                    await signOut(auth);
+                    showMessage('Successfully signed out.');
+                } catch (error) {
+                    console.error('Sign-out error:', error);
+                    showMessage(`Sign-out failed: ${error.message}`);
+                }
+            });
+        }
+
+        // Auth state listener
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // User is signed in
+                userEmailDisplay.textContent = user.email;
+
+                // Set profile picture from Firebase Auth (Google) or a default placeholder
+                userPfp.src = user.photoURL || `https://i.pravatar.cc/100?u=${user.uid}`;
+                userPfp.alt = user.displayName || user.email || 'User Profile Picture';
+
+                // Try to fetch user's name from Firestore for personalized greeting
+                const userProfileRef = doc(db, `artifacts/${appId}/users/${user.uid}/userProfiles`, user.uid);
+                try {
+                    const docSnap = await getDoc(userProfileRef);
+                    if (docSnap.exists()) {
+                        const userData = docSnap.data();
+                        userNameDisplay.textContent = userData.name || user.displayName || user.email;
+                    } else {
+                        // Fallback to Firebase Auth display name or email if Firestore profile not found
+                        userNameDisplay.textContent = user.displayName || user.email;
+                    }
+                } catch (error) {
+                    console.error("Error fetching user profile from Firestore:", error);
+                    userNameDisplay.textContent = user.displayName || user.email; // Fallback in case of Firestore error
+                }
                 
-                const goToSlide = (slideIndex) => {
-                    slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
-                    dots.forEach(dot => dot.classList.remove('active'));
-                    dots[slideIndex].classList.add('active');
-                    currentSlide = slideIndex;
-                };
+                userProfileSection.style.display = 'flex'; // Show profile section
+                googleSignInBtn.style.display = 'none'; // Hide Google sign-in button
+                formTitle.style.display = 'none'; // Hide form title
 
-                const nextSlide = () => {
-                    const newIndex = (currentSlide + 1) % slides.length;
-                    goToSlide(newIndex);
-                };
-
-                const prevSlide = () => {
-                    const newIndex = (currentSlide - 1 + slides.length) % slides.length;
-                    goToSlide(newIndex);
-                };
-                
-                const startAutoSlide = () => {
-                    autoSlideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-                };
-
-                const resetAutoSlide = () => {
-                    clearInterval(autoSlideInterval);
-                    startAutoSlide();
-                };
-
-                // Event Listeners for manual controls
-                nextBtn.addEventListener('click', () => {
-                    nextSlide();
-                    resetAutoSlide();
-                });
-
-                prevBtn.addEventListener('click', () => {
-                    prevSlide();
-                    resetAutoSlide();
-                });
-
-                // Initialize
-                goToSlide(0);
-                startAutoSlide();
+            } else {
+                // User is signed out
+                userProfileSection.style.display = 'none'; // Hide profile section
+                googleSignInBtn.style.display = 'inline-flex'; // Show Google sign-in button
+                formTitle.style.display = 'block'; // Show form title
             }
         });
-    </script>
+
+</script>
+<script src="./assets/js/global.js"></script>
 </body>
 </html>
