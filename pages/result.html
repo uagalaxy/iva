@@ -1,69 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Page | iVA</title>
-    <link rel="stylesheet" href="../assets/css/global.css">
-    <style>
-        /* ============================================
-           --- Main Content Styles ---
-           ============================================
-        */
+    <title>Results | iVA</title>
+    <link rel="stylesheet" href="./assets/css/global.css">
+      <style>
         /* Result Section Specific Styles */
         .result-year-section {
-            background-color: var(--background);
-            /* Use background for main section */
+            background-color: var(--background); /* Use background for main section */
             padding: 2rem;
             border-radius: var(--radius);
             border: 1px solid var(--border);
             margin-bottom: 2rem;
         }
-
         .result-year-section h3 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: var(--primary);
             margin-bottom: 1.5rem;
             text-align: left;
         }
-
-        .monthly-results {
+        .topic-results { /* Changed from monthly-results */
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
         }
-
-        .monthly-result-card {
-            background-color: var(--card);
-            /* Cards inside the year section */
+        .topic-result-card { /* Changed from monthly-result-card */
+            background-color: var(--card); /* Cards inside the year section */
+            max-width: 300px;
             border: 1px solid var(--border);
             border-radius: var(--radius);
             padding: 1.5rem;
             text-align: center;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative; /* For progress bar positioning */
         }
-
-        .monthly-result-card:hover {
+        .topic-result-card:hover { /* Changed from monthly-result-card */
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-
-        .monthly-result-card h4 {
+        .topic-result-card h4 { /* Changed from monthly-result-card */
             font-size: 1.1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem; /* Adjusted for date */
             color: var(--foreground);
         }
-
-        .monthly-result-card .btn {
+        .topic-result-card p.publish-date { /* New style for publish date */
+            font-size: 0.8rem;
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+        .topic-result-card .btn { /* Changed from monthly-result-card */
             padding: 0.6rem 1.2rem;
             font-size: 0.9rem;
         }
+        .topic-result-card .btn-delete { /* Style for delete button */
+            background-color: var(--destructive);
+            color: var(--destructive-foreground);
+            margin-top: 0.75rem; /* Spacing from view PDF button */
+        }
+        .topic-result-card .btn-delete:hover {
+            background-color: #dc2626; /* Slightly darker red on hover */
+        }
+
+        /* Dropdown specific styles */
+        .class-selector-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .class-selector {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background-color: var(--card);
+            color: var(--foreground);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+        .class-selector:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.1); /* light ring effect */
+        }
+        .dark .class-selector:focus {
+            box-shadow: 0 0 0 2px rgba(250, 250, 250, 0.1); /* dark ring effect */
+        }
+
+        /* PDF Upload Section Styles */
+        .upload-section {
+            max-width: 500px;
+            width: 90vw;
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        .upload-section h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .upload-form label {
+            text-align: left;
+            font-size: 0.95rem;
+            color: var(--foreground);
+        }
+
+        .upload-form input[type="file"] {
+            display: block; /* Make it take full width */
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            background-color: var(--background);
+            color: var(--foreground);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .upload-form input[type="file"]::file-selector-button {
+            background-color: var(--secondary);
+            color: var(--secondary-foreground);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .upload-form input[type="file"]::file-selector-button:hover {
+            background-color: var(--muted);
+        }
+
+        .upload-form select, .upload-form input[type="text"] {
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+            background-color: var(--background);
+            color: var(--foreground);
+            font-size: 1rem;
+            width: 100%;
+            appearance: none; /* Remove default arrow for select */
+        }
+        .upload-form input[type="text"] {
+            box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+        }
+        .upload-form select:focus, .upload-form input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.1);
+        }
+
+        .upload-progress-container {
+            width: 100%;
+            background-color: var(--muted);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-top: 1rem;
+            display: none; /* Hidden by default */
+        }
+
+        .upload-progress-bar {
+            width: 0%;
+            height: 20px;
+            background-color: var(--primary);
+            border-radius: 0.5rem;
+            text-align: center;
+            color: var(--primary-foreground);
+            line-height: 20px;
+            font-size: 0.8rem;
+            transition: width 0.3s ease;
+        }
+
+        /* Error/Success message area */
+        #upload-status-message {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--foreground);
+        }
+        #upload-status-message.error {
+            color: var(--destructive);
+        }
+        #upload-status-message.success {
+            color: #22c55e; /* Green color for success */
+        }
+
+        /* Filter Section Styles */
+        .filter-section {
+            max-width: 800px;
+            margin: 0 auto 2rem auto; /* Adjusted margin */
+            padding: 1.5rem;
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            text-align: center;
+        }
+        .filter-section label {
+            font-size: 1.1rem;
+            color: var(--foreground);
+        }
+        .filter-section input[type="text"] {
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+            background-color: var(--background);
+            color: var(--foreground);
+            font-size: 1rem;
+            width: 100%;
+            max-width: 400px; /* Limit width */
+        }
+        .filter-section input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.1);
+        }
+
+        /* --- Modal for Messages (replacement for alert) --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--card);
+            margin: auto;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .close-button {
+            color: var(--muted-foreground);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--primary);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+        /* ============================================
+           --- Responsive Design (Media Queries) ---
+           ============================================
+        */
+        @media (max-width: 768px) {
+            
+            /* Results page specific responsive */
+            .topic-results { /* Changed from monthly-results */
+                grid-template-columns: 1fr; /* Stack monthly cards on small screens */
+            }
+
+            
+        }
     </style>
 </head>
-
 <body>
-    <!-- Header Section -->
+
+<!-- Header Section -->
     <header class="header">
         <nav class="navbar">
             <a href="#" class="logo">iVA</a>
@@ -91,19 +321,15 @@
         <div class="carousel-container" id="image-carousel">
             <div class="carousel-slides" id="carousel-slides">
                 <div class="carousel-slide">
-                    <img src="../images/carousel (1).jpg" alt="Carousel Image 1"
+                    <img src="./assets/images/carousel (1).jpg" alt="Carousel Image 1"
                         onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
                 </div>
                 <div class="carousel-slide">
-                    <img src="../images/carousel (2).jpg" alt="Carousel Image 1"
+                    <img src="./assets/images/carousel (2).jpg" alt="Carousel Image 1"
                         onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
                 </div>
                 <div class="carousel-slide">
-                    <img src="../images/carousel (1).png" alt="Carousel Image 1"
-                        onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
-                </div>
-                <div class="carousel-slide">
-                    <img src="../images/1668886318551-scaled.jpg" alt="Carousel Image 1"
+                    <img src="./assets/images/carousel (1).png" alt="Carousel Image 1"
                         onerror="this.onerror=null;this.src='https://placehold.co/1600x900/cccccc/ffffff?text=Image+Not+Found';">
                 </div>
             </div>
@@ -116,172 +342,76 @@
     <main class="main-content">
         <h2 class="section-title">Our Student Results</h2>
 
+        <!-- PDF Upload Section -->
+        <section id="pdf-upload-section" class="upload-section" style="display: none;">
+            <h3>Upload New Result PDF</h3>
+            <div id="auth-status-message" style="color: var(--destructive); display: none;">Please log in to upload results.</div>
+            <form id="pdf-upload-form" class="upload-form" >
+                <label for="upload-class">Select Class:</label>
+                <select id="upload-class" required>
+                    <option value="">--Select Class--</option>
+                    <option value="10th-results">10th Class</option>
+                    <option value="11th-results">11th Class</option>
+                    <option value="12th-results">12th Class</option>
+                </select>
+
+                <label for="upload-topic">Enter Topic Name:</label>
+                <input type="text" id="upload-topic" placeholder="e.g., Algebra, Thermodynamics" required>
+                
+                <label for="pdf-file">Upload PDF File:</label>
+                <input type="file" id="pdf-file" accept="application/pdf" required>
+                
+                <button type="submit" class="btn">Upload PDF</button>
+
+                <div id="upload-progress-container" class="upload-progress-container">
+                    <div id="upload-progress-bar" class="upload-progress-bar">0%</div>
+                </div>
+                <p id="upload-status-message"></p>
+            </form>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="filter-section" style="display:none">
+            <label for="topic-filter">Filter by Topic:</label>
+            <input type="text" id="topic-filter" placeholder="e.g., Algebra">
+        </section>
+
+        <div class="class-selector-container">
+            <label for="class-select" style="font-size: 1.1rem; color: var(--foreground);">Select Class: </label>
+            <select id="class-select" class="class-selector">
+                <option value="10th-results">10th Class</option>
+                <option value="11th-results">11th Class</option>
+                <option value="12th-results">12th Class</option>
+            </select>
+        </div>
+
         <!-- 10th Class Results Section -->
         <section id="10th-results" class="section result-year-section">
             <h3>10th Class Results</h3>
-            <div class="monthly-results">
-                <div class="monthly-result-card">
-                    <h4>January Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>February Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>March Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>April Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>May Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>June Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>July Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>August Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>September Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>October Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>November Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>December Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
+            <div class="topic-results" id="monthly-results-10th">
+                <!-- PDF results will be loaded here dynamically -->
+                <p>No results available for 10th Class yet.</p>
             </div>
         </section>
 
         <!-- 11th Class Results Section -->
-        <section id="11th-results" class="section result-year-section">
+        <section id="11th-results" class="section result-year-section" style="display: none;">
             <h3>11th Class Results</h3>
-            <div class="monthly-results">
-                <div class="monthly-result-card">
-                    <h4>January Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>February Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>March Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>April Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>May Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>June Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>July Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>August Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>September Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>October Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>November Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>December Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
+            <div class="topic-results" id="monthly-results-11th">
+                <!-- PDF results will be loaded here dynamically -->
+                <p>No results available for 11th Class yet.</p>
             </div>
         </section>
 
         <!-- 12th Class Results Section -->
-        <section id="12th-results" class="section result-year-section">
+        <section id="12th-results" class="section result-year-section" style="display: none;">
             <h3>12th Class Results</h3>
-            <div class="monthly-results">
-                <div class="monthly-result-card">
-                    <h4>January Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>February Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>March Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>April Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>May Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>June Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>July Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>August Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>September Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>October Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>November Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
-                <div class="monthly-result-card">
-                    <h4>December Monthly Test</h4>
-                    <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" class="btn">View PDF</a>
-                </div>
+            <div class="topic-results" id="monthly-results-12th">
+                <!-- PDF results will be loaded here dynamically -->
+                <p>No results available for 12th Class yet.</p>
             </div>
         </section>
     </main>
-
     <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-content">
@@ -340,7 +470,374 @@
             <p class="footer-copyright">&copy; 2023 iVA. All rights reserved.</p>
         </div>
     </footer>
+    <!-- Modal for Messages -->
+    <div id="message-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            onAuthStateChanged,
+            signInAnonymously, 
+            signInWithCustomToken 
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getDatabase, ref, push, onValue, query as dbQuery, orderByChild, equalTo, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+        import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
+
+        // Your Firebase configuration (UPDATED)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDLBO_t0QC7pvvvyu_U2uvwuQNVQ2lXkFs",
+            authDomain: "uaworld.firebaseapp.com",
+            databaseURL: "https://uaworld-default-rtdb.firebaseio.com",
+            projectId: "uaworld",
+            storageBucket: "uaworld.appspot.com",
+            messagingSenderId: "816284315999",
+            appId: "1:816284315999:web:a12e1132460e9abb1386ea"
+        };
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app); 
+        const auth = getAuth(app);
+        const storage = getStorage(app);
+
+        // Global variable for current user ID
+        let currentUserId = null;
+
+        // Get DOM elements
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const docElement = document.documentElement;
+
+        const classSelect = document.getElementById('class-select');
+        const topicFilterInput = document.getElementById('topic-filter'); // Get topic filter input
+
+        const classSections = {
+            '10th-results': document.getElementById('10th-results'),
+            '11th-results': document.getElementById('11th-results'),
+            '12th-results': document.getElementById('12th-results')
+        };
+        const monthlyResultsDivs = { 
+            '10th-results': document.getElementById('monthly-results-10th'),
+            '11th-results': document.getElementById('monthly-results-11th'),
+            '12th-results': document.getElementById('monthly-results-12th')
+        };
+
+        const pdfUploadSection = document.getElementById('pdf-upload-section');
+        const authStatusMessage = document.getElementById('auth-status-message');
+        const pdfUploadForm = document.getElementById('pdf-upload-form');
+        const uploadClassSelect = document.getElementById('upload-class');
+        const uploadTopicInput = document.getElementById('upload-topic'); 
+        const pdfFile = document.getElementById('pdf-file');
+        const uploadProgressBarContainer = document.getElementById('upload-progress-container');
+        const uploadProgressBar = document.getElementById('upload-progress-bar');
+        const uploadStatusMessage = document.getElementById('upload-status-message');
+
+        const messageModal = document.getElementById('message-modal');
+        const modalMessage = document.getElementById('modal-message');
+        const closeModalBtn = document.querySelector('.modal .close-button');
+
+
+        // --- Utility Functions ---
+
+        // Function to show modal message
+        function showMessage(message, type = '') { 
+            modalMessage.textContent = message;
+            modalMessage.className = ''; 
+            if (type) {
+                modalMessage.classList.add(type);
+            }
+            messageModal.style.display = 'flex';
+        }
+
+        // Function to hide modal message
+        function hideMessage() {
+            messageModal.style.display = 'none';
+        }
+
+        // Event listener for closing modal
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', hideMessage);
+            window.addEventListener('click', (event) => {
+                if (event.target === messageModal) {
+                    hideMessage();
+                }
+            });
+        }
+
+        // --- PDF Upload Logic ---
+
+        pdfUploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!currentUserId) {
+                showMessage('You must be logged in to upload PDFs.', 'error');
+                return;
+            }
+
+            const file = pdfFile.files[0];
+            const selectedClass = uploadClassSelect.value;
+            const selectedTopic = uploadTopicInput.value.trim();
+
+            if (!file || !selectedClass || !selectedTopic) {
+                showMessage('Please select a file, class, and enter a topic.', 'error');
+                return;
+            }
+
+            const sanitizedTopic = selectedTopic.replace(/[^a-zA-Z0-9-_. ]/g, '_').replace(/\s/g, '-'); 
+            const fileName = `${Date.now()}_${file.name}`;
+            const storagePath = `artifacts/${appId}/results_pdfs/${selectedClass}/${sanitizedTopic}/${fileName}`; 
+            const storageReference = storageRef(storage, storagePath);
+            const uploadTask = uploadBytesResumable(storageReference, file);
+
+            uploadProgressBarContainer.style.display = 'block';
+            uploadStatusMessage.textContent = 'Uploading...';
+            uploadStatusMessage.classList.remove('error', 'success');
+
+            uploadTask.on('state_changed', 
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    uploadProgressBar.style.width = `${progress}%`;
+                    uploadProgressBar.textContent = `${Math.round(progress)}%`;
+                }, 
+                (error) => {
+                    console.error("Upload failed:", error);
+                    showMessage(`Upload failed: ${error.message}`, 'error');
+                    uploadProgressBarContainer.style.display = 'none';
+                }, 
+                async () => {
+                    try {
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                        
+                        // Push to Realtime Database to get a unique key
+                        await push(ref(db, `artifacts/${appId}/public/results`), {
+                            class: selectedClass,
+                            topic: selectedTopic, 
+                            fileName: file.name,
+                            downloadURL: downloadURL,
+                            uploadedAt: new Date().toISOString(), 
+                            uploadedBy: currentUserId
+                        });
+
+                        showMessage('PDF uploaded and saved successfully!', 'success');
+                        pdfUploadForm.reset(); 
+                        uploadProgressBarContainer.style.display = 'none';
+                        uploadProgressBar.style.width = '0%';
+                        uploadProgressBar.textContent = '0%';
+
+                    } catch (error) {
+                        console.error("Error saving PDF metadata:", error);
+                        showMessage(`Error saving result: ${error.message}`, 'error');
+                        uploadProgressBarContainer.style.display = 'none';
+                    }
+                }
+            );
+        });
+
+        // --- PDF Deletion Logic ---
+        async function deleteResult(resultId, downloadURL) {
+            // Check if user is logged in before allowing delete
+            if (!currentUserId) {
+                showMessage('You must be logged in to delete results.', 'error');
+                return;
+            }
+
+            // Confirmation dialog
+            if (!confirm('Are you sure you want to delete this result? This action cannot be undone.')) {
+                 return; // User cancelled deletion
+            }
+            
+            try {
+                // 1. Delete from Firebase Realtime Database
+                // The path to the specific result in RTDB
+                await remove(ref(db, `artifacts/${appId}/public/results/${resultId}`));
+                console.log(`Realtime Database entry ${resultId} deleted.`);
+
+                // 2. Delete from Firebase Storage
+                // Extract the storage path from the download URL
+                // The downloadURL format is typically:
+                // https://firebasestorage.googleapis.com/v0/b/YOUR_BUCKET/o/PATH%2FTO%2FFILE.pdf?alt=media...
+                const storagePathMatch = downloadURL.match(/o\/(.+)\?alt=media/);
+                if (storagePathMatch && storagePathMatch[1]) {
+                    const encodedPath = storagePathMatch[1];
+                    // Decode the URI component to get the actual path with slashes etc.
+                    const decodedPath = decodeURIComponent(encodedPath); 
+                    const fileRef = storageRef(storage, decodedPath); // Create storage reference from path
+                    await deleteObject(fileRef);
+                    console.log(`File ${decodedPath} deleted from Storage.`);
+                    showMessage('Result deleted successfully!', 'success');
+                } else {
+                    console.warn('Could not extract storage path from download URL. Metadata deleted, but file might remain in Storage:', downloadURL);
+                    showMessage('Result metadata deleted, but could not delete file from storage (invalid URL format or path not found).', 'error');
+                }
+
+            } catch (error) {
+                console.error("Error deleting result:", error);
+                showMessage(`Failed to delete result: ${error.message}`, 'error');
+            }
+        }
+
+
+        // --- PDF Display & Filter Logic ---
+
+        const activeListeners = {};
+        let allResultsForClass = []; // Store all fetched results for filtering
+
+        function renderResults(classId) {
+            const resultsDiv = monthlyResultsDivs[classId]; 
+            resultsDiv.innerHTML = '<p>Loading results...</p>';
+
+            if (activeListeners[classId]) {
+                activeListeners[classId](); // Unsubscribe previous listener
+                delete activeListeners[classId];
+            }
+
+            const resultsRef = ref(db, `artifacts/${appId}/public/results`);
+            const classQuery = dbQuery(resultsRef, orderByChild('class'), equalTo(classId));
+
+            // Set up a real-time listener for results
+            activeListeners[classId] = onValue(classQuery, (snapshot) => {
+                allResultsForClass = []; // Clear previous results
+                if (snapshot.exists()) {
+                    snapshot.forEach((childSnapshot) => {
+                        const data = childSnapshot.val();
+                        allResultsForClass.push({ id: childSnapshot.key, ...data });
+                    });
+                }
+                applyFilterAndRender(); // Re-render with filter after new data arrives
+            }, (error) => {
+                console.error("Error listening to Realtime Database results:", error);
+                resultsDiv.innerHTML = `<p style="color:var(--destructive);">Error loading results: ${error.message}</p>`;
+            });
+        }
+
+        // Function to apply filter and render results
+        function applyFilterAndRender() {
+            const resultsDiv = monthlyResultsDivs[classSelect.value];
+            resultsDiv.innerHTML = ''; // Clear existing content
+
+            const filterText = topicFilterInput.value.toLowerCase().trim();
+            let filteredResults = allResultsForClass;
+
+            if (filterText) {
+                filteredResults = allResultsForClass.filter(result => 
+                    result.topic.toLowerCase().includes(filterText)
+                );
+            }
+
+            if (filteredResults.length === 0) {
+                resultsDiv.innerHTML = '<p>No results available for this topic or class yet.</p>';
+            } else {
+                // Sort filtered results alphabetically by topic
+                filteredResults.sort((a, b) => {
+                    // Sort primarily by topic, secondarily by uploadedAt (newest first)
+                    const topicCompare = a.topic.localeCompare(b.topic, undefined, { sensitivity: 'base' });
+                    if (topicCompare !== 0) {
+                        return topicCompare;
+                    }
+                    // If topics are the same, sort by date, newest first
+                    const dateA = new Date(a.uploadedAt || 0);
+                    const dateB = new Date(b.uploadedAt || 0);
+                    return dateB.getTime() - dateA.getTime();
+                });
+
+                filteredResults.forEach(result => {
+                    const publishedDate = result.uploadedAt ? new Date(result.uploadedAt).toLocaleDateString() : 'N/A';
+                    // Only show delete button if user is logged in
+                    const deleteButtonHtml = currentUserId ? 
+                        `<button class="btn btn-delete" data-id="${result.id}" data-url="${result.downloadURL}">Delete Result</button>` : '';
+
+                    const cardHtml = `
+                        <div class="topic-result-card">
+                            <h4>Topic: ${result.topic}</h4>
+                            <p class="publish-date">Published: ${publishedDate}</p>
+                            <p style="font-size:0.9rem; color: var(--muted-foreground); margin-bottom: 0.5rem;">File: ${result.fileName}</p>
+                            <a href="${result.downloadURL}" target="_blank" class="btn">View PDF</a>
+                            ${deleteButtonHtml}
+                        </div>
+                    `;
+                    resultsDiv.innerHTML += cardHtml;
+                });
+
+                // Attach event listeners to newly created delete buttons
+                // Important: Do this AFTER all cards are added to the DOM
+                resultsDiv.querySelectorAll('.btn-delete').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.dataset.id;
+                        const url = e.target.dataset.url;
+                        deleteResult(id, url); // Call the new delete function
+                    });
+                });
+            }
+        }
+
+
+        const showSelectedClass = () => {
+            const selectedClassId = classSelect.value;
+            for (const sectionId in classSections) {
+                if (classSections[sectionId]) {
+                    classSections[sectionId].style.display = 'none'; 
+                }
+            }
+            if (classSections[selectedClassId]) {
+                classSections[selectedClassId].style.display = 'block'; 
+                renderResults(selectedClassId); // Re-render when class changes
+            }
+        };
+
+        if (classSelect) {
+            classSelect.addEventListener('change', showSelectedClass);
+        }
+
+        if (topicFilterInput) {
+            topicFilterInput.addEventListener('input', applyFilterAndRender); // Filter as user types
+        }
+
+        const initializeAuth = () => {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                signInWithCustomToken(auth, __initial_auth_token)
+                    .then(() => {
+                        console.log("Signed in with custom token from Canvas environment.");
+                    })
+                    .catch((error) => {
+                        console.error("Error signing in with custom token:", error);
+                        showMessage(`Authentication failed for upload features. Please log in again: ${error.message}`, 'error');
+                    });
+            } else {
+                console.log("No custom auth token provided. Anonymous access for public content.");
+            }
+        };
+
+        // This listener fires when auth state changes (on load, sign in, sign out)
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUserId = user.uid;
+                pdfUploadSection.style.display = 'block'; // Show upload section wrapper
+                pdfUploadForm.style.display = 'flex'; // Show upload form
+                authStatusMessage.style.display = 'none'; // Hide auth message
+            } else {
+                currentUserId = null;
+                pdfUploadSection.style.display = 'none'; // Still show the section wrapper
+                pdfUploadForm.style.display = 'none'; // Hide upload form if not logged in
+                authStatusMessage.style.display = 'none'; // Show auth message (if needed, or simply hide upload section)
+            }
+            // Always render results when auth state changes or on initial load
+            // This ensures results are loaded regardless of login status, and delete buttons appear/disappear.
+            showSelectedClass(); 
+        });
+
+        // Initialize authentication when the script loads
+        initializeAuth();
+
+
+    </script>
     <script src="../assets/js/global.js"></script>
 </body>
-
 </html>

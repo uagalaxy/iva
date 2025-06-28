@@ -60,6 +60,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 html {
@@ -500,7 +501,7 @@ a {
   width: 20px;
   height: 20px;
 }
-
+#e-learning-section{display: none;}
 /* ============================================
            --- Footer Styles ---
            ============================================

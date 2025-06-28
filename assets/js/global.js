@@ -146,3 +146,30 @@
                 });
             } // End of carousel logic if (slides.length > 0)
         });
+
+
+// --- Class Selection Logic for Results Page ---
+            const classSelect = document.getElementById('class-select');
+            const classSections = {
+                '10th-results': document.getElementById('10th-results'),
+                '11th-results': document.getElementById('11th-results'),
+                '12th-results': document.getElementById('12th-results')
+            };
+
+            const showSelectedClass = () => {
+                const selectedClassId = classSelect.value;
+                for (const sectionId in classSections) {
+                    if (classSections[sectionId]) {
+                        classSections[sectionId].style.display = 'none'; // Hide all
+                    }
+                }
+                if (classSections[selectedClassId]) {
+                    classSections[selectedClassId].style.display = 'block'; // Show selected
+                }
+            };
+
+            if (classSelect) {
+                classSelect.addEventListener('change', showSelectedClass);
+                // Set initial selection to 10th grade or first option on load
+                showSelectedClass(); 
+            }
